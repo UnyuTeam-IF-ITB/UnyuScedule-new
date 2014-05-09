@@ -74,7 +74,7 @@ public class PeriodeController {
         System.out.println("###UPDATE###");  
         ejbFacade.edit(periode);
         refresh();
-        return "ListPeriode"; // will display the customer list in a table  
+        return "/admin/ListPeriode"; // will display the customer list in a table  
     }  
   
     /** 
@@ -82,21 +82,21 @@ public class PeriodeController {
      */  
     public String list() {  
         System.out.println("###LIST###");  
-        return "ListPeriode";  
+        return "/admin/ListPeriode";  
     }  
     
     public String addNew() {
         this.ejbFacade.create(periode);
         //listPeriode.add(periode);
        refresh();
-        return "ListPeriode";
+        return "/admin/ListPeriode";
         
     }
     public String delete(Periode periode){
         this.periode = periode;
         this.ejbFacade.remove(periode);
         refresh();
-        return "ListPeriode";
+        return "/admin/ListPeriode";
     }
     
 }

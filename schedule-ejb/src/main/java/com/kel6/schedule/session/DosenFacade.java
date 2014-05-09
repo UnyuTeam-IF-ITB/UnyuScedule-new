@@ -10,6 +10,7 @@ import com.kel6.schedule.entities.Dosen;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,8 +30,18 @@ public class DosenFacade extends AbstractFacade<Dosen> {
         super(Dosen.class);
     }
     
-//    public Dosen getDosenByUserName(String username){
-//        
-//    }
+    public Dosen getDosenByUserName(String username){
+        Query createNamedQuery = getEntityManager().createNamedQuery("Dosen.findByUsername");
+
+        createNamedQuery.setParameter("username", username);
+
+        if (createNamedQuery.getResultList().size() > 0) {
+            return (Dosen) createNamedQuery.getSingleResult();
+        }
+        else {
+            return null;
+        }
+    }
+    
     
 }

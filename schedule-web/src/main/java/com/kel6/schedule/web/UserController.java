@@ -9,6 +9,7 @@ package com.kel6.schedule.web;
 
 import com.kel6.schedule.entities.Dosen;
 import com.kel6.schedule.entities.Koordinator;
+import com.kel6.schedule.qualifiers.KoordinatorIn;
 import com.kel6.schedule.qualifiers.LoggedIn;
 //import com.forest.web.util.JsfUtil;
 import java.io.Serializable;
@@ -17,6 +18,7 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Produces;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -26,7 +28,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author markito
+ * @author Esa
  */
 @Named(value = "userController")
 @SessionScoped
@@ -36,8 +38,13 @@ public class UserController implements Serializable {
     private static final long serialVersionUID = -8851462237612818158L;
 
     Dosen user;
+    Koordinator krd;
     @EJB
     private com.kel6.schedule.session.DosenFacade ejbFacade;
+    @EJB
+    private com.kel6.schedule.session.KoordinatorFacade ejbKoordinator;
+    
+    
     private String username;
     private String password;
 //    @Inject
@@ -56,29 +63,28 @@ public class UserController implements Serializable {
     public String login() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-        String result;
+        String result = "/index?faces-redirect=true";
 
-        try {
-            request.login(this.getUsername(), this.getPassword());
-
+        
+            //request.login(this.getUsername(), this.getPassword());
     //        JsfUtil.addSuccessMessage(JsfUtil.getStringFromBundle(BUNDLE, "Login_Success"));
 
-            this.user = ejbFacade.find(getUsername());
-            this.getAuthenticatedUser();
-
-            if (isAdmin()) {
-                result = "/admin/index";
+            this.user = ejbFacade.getDosenByUserName(getUsername());
+            if(user != null && username != null  && username.equals(user.getUsername()) 
+                    && password != null  && password.equals(user.getPassword())) {
+                addMessage("Login Berhasil");
+                this.getAuthenticatedUser();
+                this.krd = ejbKoordinator.getKoordinatorByNik(user.getNikDosen());
+                if(krd != null ){
+                   this.getAuthenticatedKoordinator();
+                }
+                result = "/index?faces-redirect=true";
             } else {
-                result = "/index";
+                addMessage("Login Gagal");
+                return null;
             }
-
-        } catch (ServletException ex) {
-            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-  //          JsfUtil.addErrorMessage(JsfUtil.getStringFromBundle(BUNDLE, "Login_Failed"));
-
-            result = "login";
-        }
-
+            
+        
         return result;
     }
 
@@ -86,22 +92,22 @@ public class UserController implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         
-        try {
+  //      try {
             this.user = null;
             
-            request.logout();
+//            request.logout();
             // clear the session
             ((HttpSession) context.getExternalContext().getSession(false)).invalidate();
             
  //           JsfUtil.addSuccessMessage(JsfUtil.getStringFromBundle(BUNDLE, "Logout_Success"));
 
-        } catch (ServletException ex) {
+    //    } catch (ServletException ex) {
 
-            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+      //      Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
  //           JsfUtil.addErrorMessage(JsfUtil.getStringFromBundle(BUNDLE, "Logout_Failed"));
-        } finally {
-            return "/index";
-        }
+        //} finally {
+            return "/index?faces-redirect=true";
+       // }
     }
 
     /**
@@ -121,17 +127,18 @@ public class UserController implements Serializable {
         return (getUser() == null) ? false : true;
     }
 
-    public boolean isAdmin() {
+    public boolean isKoordinator() {
 //        for (Groups g : user.getGroupsList()) {
 //            if (g.getName().equals("ADMINS")) {
 //                return true;
 //            }
 //        }
-        return false;
+        
+        return (getKoordinator() == null) ? false : true;
     }
 
     public String goAdmin() {
-        if (isAdmin()) {
+        if (isKoordinator()) {
             return "/admin/index";
         } else {
             return "index";
@@ -171,5 +178,20 @@ public class UserController implements Serializable {
      */
     public Dosen getUser() {
         return user;
+    }
+    
+    public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    public @Produces
+    @KoordinatorIn
+    Dosen getAuthenticatedKoordinator() {
+        return user;
+    }
+
+    private Koordinator getKoordinator() {
+        return this.krd;
     }
 }

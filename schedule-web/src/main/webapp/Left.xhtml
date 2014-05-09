@@ -10,12 +10,36 @@ and open the template in the editor.
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:util="http://java.sun.com/jsf/composite/util">
-
+                xmlns:p="http://primefaces.org/ui">
 <ul>
-<li><a href="#{request.contextPath}/index.xhtml" class="active">Home</a></li>
-<li><a href="#{request.contextPath}/jadwal/ViewJadwal.xhtml">View Jadwal</a></li>
-
+    <h:form id = "form1" rendered="#{userController.logged == false}">
+        <p:menu>
+            <p:submenu label="Unyu Schedule">
+                <p:menuitem value="Home" url="/index.xhtml" icon="ui-icon-home"/>
+                <p:menuitem value="View Jadwal" url="/jadwal/ViewJadwal.xhtml" icon="ui-icon-star"/>
+            </p:submenu>
+        </p:menu>
+    </h:form>
 </ul>
-
-    </ui:composition>
+    <h:form id = "form2" rendered="#{userController.logged and userController.koordinator == false}">
+        <p:menu>
+            <p:submenu label="Unyu Schedule">
+                <p:menuitem value="Home" url="/index.xhtml" icon="ui-icon-home"/>
+                <p:menuitem value="View Jadwal" url="/jadwal/ViewJadwal.xhtml" icon="ui-icon-star"/>
+                <p:menuitem value="Entry Ketersediaan" url="/dosen/EntryKetersediaan.xhtml" update="messages" icon="ui-icon-home"/>
+            </p:submenu>
+        </p:menu>
+    </h:form>
+    <h:form id = "form3" rendered="#{userController.logged and userController.koordinator}">
+        <p:menu>
+            <p:submenu label="Unyu Schedule">
+                <p:menuitem value="Home" url="/index.xhtml" icon="ui-icon-home"/>
+                <p:menuitem value="View Jadwal" url="/jadwal/ViewJadwal.xhtml" icon="ui-icon-star"/>
+                <p:menuitem value="Entry Ketersediaan" url="/dosen/EntryKetersediaan.xhtml" update="messages" icon="ui-icon-home"/>
+                <p:menuitem value="Periode" url="/admin/ListPeriode.xhtml" update="messages" icon="ui-icon-home"/>
+            </p:submenu>
+        </p:menu>
+    </h:form>
+    
+    
+ </ui:composition>
