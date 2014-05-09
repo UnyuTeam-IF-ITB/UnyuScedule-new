@@ -1,0 +1,23 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="/template.xhtml"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">
+        <f:view>
+        <h:form id="form">
+ 
+        <p:schedule id="schedule" value="#{scheduleController.eventModel}" widgetVar="myschedule">
+ 
+           
+ 
+        </p:schedule>
+ 
+        </h:form>
+        </f:view>
+    </ui:define>
+</ui:composition>
+

@@ -1,0 +1,52 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="/template.xhtml"
+    xmlns:util="http://java.sun.com/jsf/composite/util"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="content">
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="Create Periode"/></h1>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Semester:" for="semPeriode" />
+                    <p:inputText id="semPeriode" value="#{periodeController.details.semPeriode}" title="SemPeriode" />
+                    <p:outputLabel value="Tahun:" for="thnPeriode" />
+                    <p:inputText id="thnPeriode" value="#{periodeController.details.thnPeriode}" title="ThnPeriode" />
+                    <p:outputLabel value="Awal Pengisian Ketersediaan Dosen:" for="rentangKtsAwal" />
+                    <p:inputText id="rentangKtsAwal" value="#{periodeController.details.rentangKtsAwal}" title="RentangKtsAwal" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </p:inputText>
+                    <p:outputLabel value="Akhir Pengisian Ketersediaan Dosen:" for="rentangKtsAkhir" />
+                    <p:inputText id="rentangKtsAkhir" value="#{periodeController.details.rentangKtsAkhir}" title="RentangKtsAkhir" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </p:inputText>
+                    <p:outputLabel value="Rentang Awal Sidang:" for="rentangSdgAwal" />
+                    <p:inputText id="rentangSdgAwal" value="#{periodeController.details.rentangSdgAwal}" title="RentangSdgAwal" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </p:inputText>
+                    <p:outputLabel value="Rentang Akhir Sidang:" for="rentangSdgAkhir" />
+                    <p:inputText id="rentangSdgAkhir" value="#{periodeController.details.rentangSdgAkhir}" title="RentangSdgAkhir" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </p:inputText>
+                </p:panelGrid>
+                <p:commandButton action="#{periodeController.addNew}" value="Add" />
+                <h:outputScript name="./js/jquery-min.js" target="head" />
+                <h:outputScript name="./js/anytime.js" target="head"/>
+                
+                <h:outputScript>
+                    AnyTime.picker('j_idt15:rentangKtsAwal',{format:"%m/%d/%Y %H:%i:%s"});
+                    AnyTime.picker('j_idt15:rentangKtsAkhir',{format:"%m/%d/%Y %H:%i:%s"});
+                    AnyTime.picker('j_idt15:rentangSdgAwal',{format:"%m/%d/%Y %H:%i:%s"});
+                    AnyTime.picker('j_idt15:rentangSdgAkhir',{format:"%m/%d/%Y %H:%i:%s"});
+                </h:outputScript>
+
+            </h:form>
+        </f:view>
+
+    </ui:define>
+</ui:composition>

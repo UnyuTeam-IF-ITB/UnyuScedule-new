@@ -1,0 +1,79 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="/template.xhtml"
+    xmlns:util="http://java.sun.com/jsf/composite/util"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="List Periode"/></h1>
+                <p:dataTable value="#{periodeController.listPeriode}" var="item">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id Periode"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idPeriode}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Semester"/>
+                        </f:facet>
+                        <h:outputText value="#{item.semPeriode}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Tahun"/>
+                        </f:facet>
+                        <h:outputText value="#{item.thnPeriode}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Rentang Kts Awal"/>
+                        </f:facet>
+                        <h:outputText value="#{item.rentangKtsAwal}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Rentang Kts Akhir"/>
+                        </f:facet>
+                        <h:outputText value="#{item.rentangKtsAkhir}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Rentang Sdg Awal"/>
+                        </f:facet>
+                        <h:outputText value="#{item.rentangSdgAwal}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Rentang Sdg Akhir"/>
+                        </f:facet>
+                        <h:outputText value="#{item.rentangSdgAkhir}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Action"/>
+                        </f:facet>
+                        <p:commandLink action="#{periodeController.showDetails(item)}" value="Edit" /> | 
+                        <p:commandLink action="#{periodeController.delete(item)}" value="Delete" />
+                    </p:column>
+                </p:dataTable>
+                <h:commandLink action="#{periodeController.goAdd}" value="Add New" />
+            </h:form>
+        </f:view>
+
+        
+    </ui:define>
+</ui:composition>
