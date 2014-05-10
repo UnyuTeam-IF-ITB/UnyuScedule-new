@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Esa_Lucu
+ * @author Junta
  */
 @Entity
-@Table(name = "Karya Akhir")
+@Table(name = "karya_akhir")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "KaryaAkhir.findAll", query = "SELECT k FROM KaryaAkhir k"),
@@ -54,10 +54,7 @@ public class KaryaAkhir implements Serializable {
         @JoinColumn(name = "id_topik", referencedColumnName = "id_topik")})
     @ManyToMany
     private Collection<Topik> topikCollection;
-    @JoinTable(name = "pembimbing", joinColumns = {
-        @JoinColumn(name = "id_ka", referencedColumnName = "id_ka")}, inverseJoinColumns = {
-        @JoinColumn(name = "nik_dosen", referencedColumnName = "nik_dosen")})
-    @ManyToMany
+    @ManyToMany(mappedBy = "karyaAkhirCollection")
     private Collection<Dosen> dosenCollection;
     @OneToMany(mappedBy = "idKa")
     private Collection<SeminarSidang> seminarSidangCollection;
@@ -175,7 +172,7 @@ public class KaryaAkhir implements Serializable {
 
     @Override
     public String toString() {
-        return "com.rpl.entities.KaryaAkhir[ idKa=" + idKa + " ]";
+        return "com.kel6.schedule.entities.KaryaAkhir[ idKa=" + idKa + " ]";
     }
     
 }

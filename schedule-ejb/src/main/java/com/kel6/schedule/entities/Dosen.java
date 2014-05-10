@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Esa_Lucu
+ * @author Junta
  */
 @Entity
 @Table(name = "dosen")
@@ -68,12 +68,15 @@ public class Dosen implements Serializable {
         @JoinColumn(name = "id_smnsdg", referencedColumnName = "id_smnsdg")})
     @ManyToMany
     private Collection<SeminarSidang> seminarSidangCollection;
-    @ManyToMany(mappedBy = "dosenCollection")
+    @JoinTable(name = "pembimbing", joinColumns = {
+        @JoinColumn(name = "nik_dosen", referencedColumnName = "nik_dosen")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_ka", referencedColumnName = "id_ka")})
+    @ManyToMany
     private Collection<KaryaAkhir> karyaAkhirCollection;
     @OneToMany(mappedBy = "nikDosen")
     private Collection<Koordinator> koordinatorCollection;
     @OneToMany(mappedBy = "nikDosen")
-    private Collection<Ketersediaandosen> ketersediaandosenCollection;
+    private Collection<KetersediaanDosen> ketersediaanDosenCollection;
 
     public Dosen() {
     }
@@ -167,12 +170,12 @@ public class Dosen implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Ketersediaandosen> getKetersediaandosenCollection() {
-        return ketersediaandosenCollection;
+    public Collection<KetersediaanDosen> getKetersediaanDosenCollection() {
+        return ketersediaanDosenCollection;
     }
 
-    public void setKetersediaandosenCollection(Collection<Ketersediaandosen> ketersediaandosenCollection) {
-        this.ketersediaandosenCollection = ketersediaandosenCollection;
+    public void setKetersediaanDosenCollection(Collection<KetersediaanDosen> ketersediaanDosenCollection) {
+        this.ketersediaanDosenCollection = ketersediaanDosenCollection;
     }
 
     @Override
@@ -197,7 +200,7 @@ public class Dosen implements Serializable {
 
     @Override
     public String toString() {
-        return "com.rpl.entities.Dosen[ nikDosen=" + nikDosen + " ]";
+        return "com.kel6.schedule.entities.Dosen[ nikDosen=" + nikDosen + " ]";
     }
     
 }

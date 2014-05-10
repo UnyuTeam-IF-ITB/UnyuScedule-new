@@ -6,7 +6,7 @@
 
 package com.kel6.schedule.session;
 
-import com.kel6.schedule.entities.Ketersediaandosen;
+import com.kel6.schedule.entities.KetersediaanDosen;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
  * @author Esa_Lucu
  */
 @Stateless
-public class KetersediaandosenFacade extends AbstractFacade<Ketersediaandosen> {
+public class KetersediaandosenFacade extends AbstractFacade<KetersediaanDosen> {
     @PersistenceContext(unitName = "com.rpl_schedule-ejb_ejb_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -26,7 +26,7 @@ public class KetersediaandosenFacade extends AbstractFacade<Ketersediaandosen> {
     }
 
     public KetersediaandosenFacade() {
-        super(Ketersediaandosen.class);
+        super(KetersediaanDosen.class);
     }
     
 }

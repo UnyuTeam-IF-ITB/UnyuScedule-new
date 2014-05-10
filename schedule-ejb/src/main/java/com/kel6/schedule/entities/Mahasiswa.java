@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Esa_Lucu
+ * @author Junta
  */
 @Entity
 @Table(name = "mahasiswa")
@@ -136,7 +136,7 @@ public class Mahasiswa implements Serializable {
 
     @Override
     public String toString() {
-        return "com.rpl.entities.Mahasiswa[ nim=" + nim + " ]";
+        return "com.kel6.schedule.entities.Mahasiswa[ nim=" + nim + " ]";
     }
     
 }

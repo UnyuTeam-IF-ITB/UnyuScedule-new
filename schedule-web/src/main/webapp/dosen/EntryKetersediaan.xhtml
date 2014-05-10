@@ -1,12 +1,40 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
-</html>
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="/template.xhtml"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="content">
+        <h:form id="form">
+ 
+            <p:growl id="messages" showDetail="true" />
+
+            <p:schedule id="schedule" value="#{ketersediaanController.eventModel}" widgetVar="myschedule">
+
+                <p:ajax event="dateSelect" listener="#{ketersediaanController.onDateSelect}" update="eventDetails" oncomplete="eventDialog.show()" />
+                <p:ajax event="eventSelect" listener="#{ketersediaanController.onEventSelect}" update="eventDetails" oncomplete="eventDialog.show()" />
+                <p:ajax event="eventMove" listener="#{ketersediaanController.onEventMove}" update="messages" />
+                <p:ajax event="eventResize" listener="#{ketersediaanController.onEventResize}" update="messages" />
+
+            </p:schedule>
+
+            <p:dialog widgetVar="eventDialog" header="Input Ketersediaan" showEffect="clip" hideEffect="clip">
+                <h:panelGrid id="eventDetails" columns="1">  
+                    <h:dataTable value="#{ketersediaanController.listJamKuliahHari}" var="item">
+                    </h:dataTable>
+                    <p:selectManyCheckbox id="pageDirection" value="#{ketersediaanController.listItemSelected}" layout="pageDirection">                          
+                        <f:selectItems value="#{ketersediaanController.map}"/>
+                     </p:selectManyCheckbox>
+
+                    <p:commandButton type="reset" value="Reset" />
+                    <p:commandButton id="addButton" value="Save" actionListener="#{ketersediaanController.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
+                </h:panelGrid>
+            </p:dialog>
+
+        </h:form>
+    </ui:define>
+</ui:composition>
 

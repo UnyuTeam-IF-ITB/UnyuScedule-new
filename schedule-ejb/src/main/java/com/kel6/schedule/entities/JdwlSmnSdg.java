@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Esa_Lucu
+ * @author Junta
  */
 @Entity
 @Table(name = "jdwl_smn_sdg")
@@ -43,8 +43,6 @@ public class JdwlSmnSdg implements Serializable {
     private Long idJdwSs;
     @Column(name = "slot_waktu_id")
     private BigInteger slotWaktuId;
-    @OneToMany(mappedBy = "idJdwlSs")
-    private Collection<SlotWaktu> slotWaktuCollection;
     @OneToMany(mappedBy = "idJdwSs")
     private Collection<SeminarSidang> seminarSidangCollection;
     @JoinColumn(name = "id_smnsdg", referencedColumnName = "id_smnsdg")
@@ -53,6 +51,8 @@ public class JdwlSmnSdg implements Serializable {
     @JoinColumn(name = "id_periode", referencedColumnName = "id_periode")
     @ManyToOne
     private Periode idPeriode;
+    @OneToMany(mappedBy = "idJdwlSs")
+    private Collection<SlotWaktu> slotWaktuCollection;
 
     public JdwlSmnSdg() {
     }
@@ -75,15 +75,6 @@ public class JdwlSmnSdg implements Serializable {
 
     public void setSlotWaktuId(BigInteger slotWaktuId) {
         this.slotWaktuId = slotWaktuId;
-    }
-
-    @XmlTransient
-    public Collection<SlotWaktu> getSlotWaktuCollection() {
-        return slotWaktuCollection;
-    }
-
-    public void setSlotWaktuCollection(Collection<SlotWaktu> slotWaktuCollection) {
-        this.slotWaktuCollection = slotWaktuCollection;
     }
 
     @XmlTransient
@@ -111,6 +102,15 @@ public class JdwlSmnSdg implements Serializable {
         this.idPeriode = idPeriode;
     }
 
+    @XmlTransient
+    public Collection<SlotWaktu> getSlotWaktuCollection() {
+        return slotWaktuCollection;
+    }
+
+    public void setSlotWaktuCollection(Collection<SlotWaktu> slotWaktuCollection) {
+        this.slotWaktuCollection = slotWaktuCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -133,7 +133,7 @@ public class JdwlSmnSdg implements Serializable {
 
     @Override
     public String toString() {
-        return "com.rpl.entities.JdwlSmnSdg[ idJdwSs=" + idJdwSs + " ]";
+        return "com.kel6.schedule.entities.JdwlSmnSdg[ idJdwSs=" + idJdwSs + " ]";
     }
     
 }

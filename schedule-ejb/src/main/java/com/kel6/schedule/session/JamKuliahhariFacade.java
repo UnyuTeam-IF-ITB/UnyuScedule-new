@@ -6,7 +6,7 @@
 
 package com.kel6.schedule.session;
 
-import com.kel6.schedule.entities.JamKuliahhari;
+import com.kel6.schedule.entities.JamKuliahHari;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
  * @author Esa_Lucu
  */
 @Stateless
-public class JamKuliahhariFacade extends AbstractFacade<JamKuliahhari> {
+public class JamKuliahhariFacade extends AbstractFacade<JamKuliahHari> {
     @PersistenceContext(unitName = "com.rpl_schedule-ejb_ejb_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -26,7 +26,7 @@ public class JamKuliahhariFacade extends AbstractFacade<JamKuliahhari> {
     }
 
     public JamKuliahhariFacade() {
-        super(JamKuliahhari.class);
+        super(JamKuliahHari.class);
     }
     
 }

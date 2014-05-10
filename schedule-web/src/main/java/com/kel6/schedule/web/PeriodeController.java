@@ -72,9 +72,9 @@ public class PeriodeController {
      */  
     public String update() {  
         System.out.println("###UPDATE###");  
-        ejbFacade.edit(periode);
-        refresh();
-        return "/admin/ListPeriode"; // will display the customer list in a table  
+        ejbFacade.edit(this.getDetails());
+   //     refresh();
+        return "/admin/ListPeriode?faces-redirect=true"; // will display the customer list in a table  
     }  
   
     /** 
@@ -82,21 +82,21 @@ public class PeriodeController {
      */  
     public String list() {  
         System.out.println("###LIST###");  
-        return "/admin/ListPeriode";  
+        return "/admin/ListPeriode?faces-redirect=true";  
     }  
     
     public String addNew() {
         this.ejbFacade.create(periode);
         //listPeriode.add(periode);
        refresh();
-        return "/admin/ListPeriode";
+        return "/admin/ListPeriode?faces-redirect=true";
         
     }
     public String delete(Periode periode){
         this.periode = periode;
         this.ejbFacade.remove(periode);
         refresh();
-        return "/admin/ListPeriode";
+        return "/admin/ListPeriode?faces-redirect=true";
     }
     
 }

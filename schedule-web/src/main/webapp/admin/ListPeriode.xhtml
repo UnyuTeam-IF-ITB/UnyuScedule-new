@@ -66,8 +66,8 @@
                         <f:facet name="header">
                             <h:outputText value="Action"/>
                         </f:facet>
-                        <p:commandLink action="#{periodeController.showDetails(item)}" value="Edit" /> | 
-                        <p:commandLink action="#{periodeController.delete(item)}" value="Delete" />
+                        <h:commandLink action="#{periodeController.showDetails(item)}" value="Edit" /> | 
+                        <h:commandLink action="#{periodeController.delete(item)}" value="Delete" />
                     </p:column>
                 </p:dataTable>
                 <h:commandLink action="#{periodeController.goAdd}" value="Add New" />

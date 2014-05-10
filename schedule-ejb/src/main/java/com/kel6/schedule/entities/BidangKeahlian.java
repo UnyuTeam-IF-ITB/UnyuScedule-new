@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Esa_Lucu
+ * @author Junta
  */
 @Entity
 @Table(name = "bidang_keahlian")
@@ -104,7 +104,7 @@ public class BidangKeahlian implements Serializable {
 
     @Override
     public String toString() {
-        return "com.rpl.entities.BidangKeahlian[ idBidang=" + idBidang + " ]";
+        return "com.kel6.schedule.entities.BidangKeahlian[ idBidang=" + idBidang + " ]";
     }
     
 }

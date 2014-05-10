@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Esa_Lucu
+ * @author Junta
  */
 @Entity
 @Table(name = "seminar")
@@ -98,7 +98,7 @@ public class Seminar implements Serializable {
 
     @Override
     public String toString() {
-        return "com.rpl.entities.Seminar[ idSeminar=" + idSeminar + " ]";
+        return "com.kel6.schedule.entities.Seminar[ idSeminar=" + idSeminar + " ]";
     }
     
 }

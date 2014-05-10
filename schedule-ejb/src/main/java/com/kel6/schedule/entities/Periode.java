@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Esa_Lucu
+ * @author Junta
  */
 @Entity
 @Table(name = "periode")
@@ -44,7 +44,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Periode.findByRentangSdgAwal", query = "SELECT p FROM Periode p WHERE p.rentangSdgAwal = :rentangSdgAwal"),
     @NamedQuery(name = "Periode.findByRentangSdgAkhir", query = "SELECT p FROM Periode p WHERE p.rentangSdgAkhir = :rentangSdgAkhir")})
 public class Periode implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;  
     @Id
     @Basic(optional = false)
     @NotNull
@@ -166,7 +166,7 @@ public class Periode implements Serializable {
 
     @Override
     public String toString() {
-        return "com.rpl.entities.Periode[ idPeriode=" + idPeriode + " ]";
+        return "com.kel6.schedule.entities.Periode[ idPeriode=" + idPeriode + " ]";
     }
     
 }

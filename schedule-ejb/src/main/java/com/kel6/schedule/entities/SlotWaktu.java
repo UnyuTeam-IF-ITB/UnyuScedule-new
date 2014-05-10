@@ -24,10 +24,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Esa_Lucu
+ * @author Junta
  */
 @Entity
-@Table(name = "Slot_Waktu")
+@Table(name = "slot_waktu")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SlotWaktu.findAll", query = "SELECT s FROM SlotWaktu s"),
@@ -51,7 +51,7 @@ public class SlotWaktu implements Serializable {
     private JdwlSmnSdg idJdwlSs;
     @JoinColumn(name = "id_jam", referencedColumnName = "id_jam")
     @ManyToOne
-    private JamKuliahhari idJam;
+    private JamKuliahHari idJam;
 
     public SlotWaktu() {
     }
@@ -92,11 +92,11 @@ public class SlotWaktu implements Serializable {
         this.idJdwlSs = idJdwlSs;
     }
 
-    public JamKuliahhari getIdJam() {
+    public JamKuliahHari getIdJam() {
         return idJam;
     }
 
-    public void setIdJam(JamKuliahhari idJam) {
+    public void setIdJam(JamKuliahHari idJam) {
         this.idJam = idJam;
     }
 
@@ -122,7 +122,7 @@ public class SlotWaktu implements Serializable {
 
     @Override
     public String toString() {
-        return "com.rpl.entities.SlotWaktu[ idSlot=" + idSlot + " ]";
+        return "com.kel6.schedule.entities.SlotWaktu[ idSlot=" + idSlot + " ]";
     }
     
 }

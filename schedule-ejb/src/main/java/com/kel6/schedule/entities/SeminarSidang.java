@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Esa_Lucu
+ * @author Junta
  */
 @Entity
 @Table(name = "seminar_sidang")
@@ -45,12 +45,12 @@ public class SeminarSidang implements Serializable {
     private Integer statusSelesai;
     @ManyToMany(mappedBy = "seminarSidangCollection")
     private Collection<Dosen> dosenCollection;
-    @JoinColumn(name = "id_jdw_ss", referencedColumnName = "id_jdw_ss")
-    @ManyToOne
-    private JdwlSmnSdg idJdwSs;
     @JoinColumn(name = "id_ka", referencedColumnName = "id_ka")
     @ManyToOne
     private KaryaAkhir idKa;
+    @JoinColumn(name = "id_jdw_ss", referencedColumnName = "id_jdw_ss")
+    @ManyToOne
+    private JdwlSmnSdg idJdwSs;
     @OneToMany(mappedBy = "idSmnsdg")
     private Collection<JdwlSmnSdg> jdwlSmnSdgCollection;
     @OneToMany(mappedBy = "idSmnsdg")
@@ -90,20 +90,20 @@ public class SeminarSidang implements Serializable {
         this.dosenCollection = dosenCollection;
     }
 
-    public JdwlSmnSdg getIdJdwSs() {
-        return idJdwSs;
-    }
-
-    public void setIdJdwSs(JdwlSmnSdg idJdwSs) {
-        this.idJdwSs = idJdwSs;
-    }
-
     public KaryaAkhir getIdKa() {
         return idKa;
     }
 
     public void setIdKa(KaryaAkhir idKa) {
         this.idKa = idKa;
+    }
+
+    public JdwlSmnSdg getIdJdwSs() {
+        return idJdwSs;
+    }
+
+    public void setIdJdwSs(JdwlSmnSdg idJdwSs) {
+        this.idJdwSs = idJdwSs;
     }
 
     @XmlTransient
@@ -155,7 +155,7 @@ public class SeminarSidang implements Serializable {
 
     @Override
     public String toString() {
-        return "com.rpl.entities.SeminarSidang[ idSmnsdg=" + idSmnsdg + " ]";
+        return "com.kel6.schedule.entities.SeminarSidang[ idSmnsdg=" + idSmnsdg + " ]";
     }
     
 }

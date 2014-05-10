@@ -18,32 +18,15 @@
                     <p:outputLabel value="Tahun:" for="thnPeriode" />
                     <p:inputText id="thnPeriode" value="#{periodeController.details.thnPeriode}" title="ThnPeriode" />
                     <p:outputLabel value="Awal Pengisian Ketersediaan Dosen:" for="rentangKtsAwal" />
-                    <p:inputText id="rentangKtsAwal" value="#{periodeController.details.rentangKtsAwal}" title="RentangKtsAwal" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </p:inputText>
+                    <p:calendar id="rentangKtsAwal" value="#{periodeController.details.rentangKtsAwal}" pattern="MM/dd/yyyy HH:mm:ss" />
                     <p:outputLabel value="Akhir Pengisian Ketersediaan Dosen:" for="rentangKtsAkhir" />
-                    <p:inputText id="rentangKtsAkhir" value="#{periodeController.details.rentangKtsAkhir}" title="RentangKtsAkhir" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </p:inputText>
+                    <p:calendar id="rentangKtsAkhir" value="#{periodeController.details.rentangKtsAkhir}" pattern="MM/dd/yyyy HH:mm:ss" />
                     <p:outputLabel value="Rentang Awal Sidang:" for="rentangSdgAwal" />
-                    <p:inputText id="rentangSdgAwal" value="#{periodeController.details.rentangSdgAwal}" title="RentangSdgAwal" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </p:inputText>
+                    <p:calendar id="rentangSdgAwal" value="#{periodeController.details.rentangSdgAwal}" pattern="MM/dd/yyyy HH:mm:ss" />
                     <p:outputLabel value="Rentang Akhir Sidang:" for="rentangSdgAkhir" />
-                    <p:inputText id="rentangSdgAkhir" value="#{periodeController.details.rentangSdgAkhir}" title="RentangSdgAkhir" >
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </p:inputText>
+                    <p:calendar id="rentangSdgAkhir" value="#{periodeController.details.rentangSdgAkhir}" pattern="MM/dd/yyyy HH:mm:ss" />
                 </p:panelGrid>
                 <p:commandButton action="#{periodeController.addNew}" value="Add" />
-                <h:outputScript name="./js/jquery-min.js" target="head" />
-                <h:outputScript name="./js/anytime.js" target="head"/>
-                
-                <h:outputScript>
-                    AnyTime.picker('j_idt15:rentangKtsAwal',{format:"%m/%d/%Y %H:%i:%s"});
-                    AnyTime.picker('j_idt15:rentangKtsAkhir',{format:"%m/%d/%Y %H:%i:%s"});
-                    AnyTime.picker('j_idt15:rentangSdgAwal',{format:"%m/%d/%Y %H:%i:%s"});
-                    AnyTime.picker('j_idt15:rentangSdgAkhir',{format:"%m/%d/%Y %H:%i:%s"});
-                </h:outputScript>
 
             </h:form>
         </f:view>

@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Esa_Lucu
+ * @author Junta
  */
 @Entity
 @Table(name = "jenis_ka")
@@ -99,7 +99,7 @@ public class JenisKa implements Serializable {
 
     @Override
     public String toString() {
-        return "com.rpl.entities.JenisKa[ idJenisKa=" + idJenisKa + " ]";
+        return "com.kel6.schedule.entities.JenisKa[ idJenisKa=" + idJenisKa + " ]";
     }
     
 }

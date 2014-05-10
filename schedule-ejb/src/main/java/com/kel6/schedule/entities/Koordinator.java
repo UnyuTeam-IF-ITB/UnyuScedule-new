@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Esa_Lucu
+ * @author Junta
  */
 @Entity
 @Table(name = "koordinator")
@@ -85,7 +85,7 @@ public class Koordinator implements Serializable {
 
     @Override
     public String toString() {
-        return "com.rpl.entities.Koordinator[ idKoordinator=" + idKoordinator + " ]";
+        return "com.kel6.schedule.entities.Koordinator[ idKoordinator=" + idKoordinator + " ]";
     }
     
 }
