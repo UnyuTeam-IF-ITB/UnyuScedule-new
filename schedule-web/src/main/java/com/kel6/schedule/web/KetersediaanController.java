@@ -12,6 +12,7 @@ import com.kel6.schedule.entities.KetersediaanDosen;
 import com.kel6.schedule.qualifiers.LoggedIn;
 import com.kel6.schedule.session.KetersediaandosenFacade;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -57,6 +58,7 @@ public class KetersediaanController implements Serializable{
     private List<JamKuliahHari> listJamKuliahHari;
     private JamKuliahHari jamKuliahhari;
     private List<JamKuliahHari> listSelected;
+    private List <String> listItemSelected;
     
     @Inject
     @LoggedIn
@@ -132,7 +134,6 @@ public class KetersediaanController implements Serializable{
     }
     
     
-    List <String> listItemSelected;
 
     public List<String> getListItemSelected() {
         return listItemSelected;
@@ -394,6 +395,21 @@ public class KetersediaanController implements Serializable{
      
     public void onDateSelect(SelectEvent selectEvent) {
         event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject());
+        if(listItemSelected!=null){
+            listItemSelected.clear();
+        }
+        populateCheckBox();
+        
+    }
+    
+    public void populateCheckBox(){
+        listKetersediaanDosen = ejbFacade.getKetersediaanByNikDate(getAuthenticated(), this.event.getStartDate());
+        if(listKetersediaanDosen!=null){
+            listItemSelected = new ArrayList<>();
+            for(int i=0; i<listKetersediaanDosen.size();i++){
+                listItemSelected.add(listKetersediaanDosen.get(i).getIdJam().getIdJam().toString());
+            }
+        }
     }
      
     public void onEventMove(ScheduleEntryMoveEvent event) {
