@@ -7,7 +7,7 @@
 package com.kel6.schedule.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Junta
+ * @author Esa_Lucu
  */
 @Entity
 @Table(name = "ruangan")
@@ -44,7 +44,9 @@ public class Ruangan implements Serializable {
     @Column(name = "nm_ruangan")
     private String nmRuangan;
     @OneToMany(mappedBy = "idRuangan")
-    private Collection<SlotWaktu> slotWaktuCollection;
+    private List<KetersediaanRuangan> ketersediaanRuanganList;
+    @OneToMany(mappedBy = "idRuangan")
+    private List<JadwalDetail> jadwalDetailList;
 
     public Ruangan() {
     }
@@ -70,12 +72,21 @@ public class Ruangan implements Serializable {
     }
 
     @XmlTransient
-    public Collection<SlotWaktu> getSlotWaktuCollection() {
-        return slotWaktuCollection;
+    public List<KetersediaanRuangan> getKetersediaanRuanganList() {
+        return ketersediaanRuanganList;
     }
 
-    public void setSlotWaktuCollection(Collection<SlotWaktu> slotWaktuCollection) {
-        this.slotWaktuCollection = slotWaktuCollection;
+    public void setKetersediaanRuanganList(List<KetersediaanRuangan> ketersediaanRuanganList) {
+        this.ketersediaanRuanganList = ketersediaanRuanganList;
+    }
+
+    @XmlTransient
+    public List<JadwalDetail> getJadwalDetailList() {
+        return jadwalDetailList;
+    }
+
+    public void setJadwalDetailList(List<JadwalDetail> jadwalDetailList) {
+        this.jadwalDetailList = jadwalDetailList;
     }
 
     @Override

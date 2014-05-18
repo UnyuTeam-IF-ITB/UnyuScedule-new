@@ -7,7 +7,7 @@
 package com.kel6.schedule.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Junta
+ * @author Esa_Lucu
  */
 @Entity
 @Table(name = "jenis_ka")
@@ -43,7 +43,7 @@ public class JenisKa implements Serializable {
     @Column(name = "nama_jenis")
     private String namaJenis;
     @OneToMany(mappedBy = "idJenisKa")
-    private Collection<KaryaAkhir> karyaAkhirCollection;
+    private List<KaryaAkhir> karyaAkhirList;
 
     public JenisKa() {
     }
@@ -69,12 +69,12 @@ public class JenisKa implements Serializable {
     }
 
     @XmlTransient
-    public Collection<KaryaAkhir> getKaryaAkhirCollection() {
-        return karyaAkhirCollection;
+    public List<KaryaAkhir> getKaryaAkhirList() {
+        return karyaAkhirList;
     }
 
-    public void setKaryaAkhirCollection(Collection<KaryaAkhir> karyaAkhirCollection) {
-        this.karyaAkhirCollection = karyaAkhirCollection;
+    public void setKaryaAkhirList(List<KaryaAkhir> karyaAkhirList) {
+        this.karyaAkhirList = karyaAkhirList;
     }
 
     @Override

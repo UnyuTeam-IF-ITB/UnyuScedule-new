@@ -6,7 +6,9 @@
 
 package com.kel6.schedule.session;
 
-import com.kel6.schedule.entities.SlotWaktu;
+import com.kel6.schedule.entities.KetersediaanRuangan;
+import com.kel6.schedule.entities.Ruangan;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,7 +18,7 @@ import javax.persistence.PersistenceContext;
  * @author Esa_Lucu
  */
 @Stateless
-public class SlotWaktuFacade extends AbstractFacade<SlotWaktu> {
+public class KetersediaanRuanganFacade extends AbstractFacade<KetersediaanRuangan> {
     @PersistenceContext(unitName = "com.rpl_schedule-ejb_ejb_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -25,8 +27,15 @@ public class SlotWaktuFacade extends AbstractFacade<SlotWaktu> {
         return em;
     }
 
-    public SlotWaktuFacade() {
-        super(SlotWaktu.class);
+    public KetersediaanRuanganFacade() {
+        super(KetersediaanRuangan.class);
+    }
+    
+    
+    
+    public List<Ruangan> findAllWithDependency() {
+        return null;
+        //return em;
     }
     
 }

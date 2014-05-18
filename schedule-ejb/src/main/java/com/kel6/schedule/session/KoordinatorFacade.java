@@ -6,7 +6,6 @@
 
 package com.kel6.schedule.session;
 
-import com.kel6.schedule.entities.Dosen;
 import com.kel6.schedule.entities.Koordinator;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -30,7 +29,6 @@ public class KoordinatorFacade extends AbstractFacade<Koordinator> {
     public KoordinatorFacade() {
         super(Koordinator.class);
     }
-    
     public Koordinator getKoordinatorByNik(String nik){
         String query = "SELECT k FROM Koordinator k WHERE k.nikDosen.nikDosen = ?1";
         Query createNamedQuery = getEntityManager().createQuery(query);
@@ -44,5 +42,5 @@ public class KoordinatorFacade extends AbstractFacade<Koordinator> {
             return null;
         }
     }
-    
+
 }

@@ -30,7 +30,8 @@ public class DosenFacade extends AbstractFacade<Dosen> {
         super(Dosen.class);
     }
     
-    public Dosen getDosenByUserName(String username){
+    
+public Dosen getDosenByUserName(String username){
         Query createNamedQuery = getEntityManager().createNamedQuery("Dosen.findByUsername");
 
         createNamedQuery.setParameter("username", username);
@@ -41,7 +42,6 @@ public class DosenFacade extends AbstractFacade<Dosen> {
         else {
             return null;
         }
-    }
-    
+}
     
 }

@@ -10,6 +10,7 @@ import com.kel6.schedule.entities.Periode;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +29,17 @@ public class PeriodeFacade extends AbstractFacade<Periode> {
     public PeriodeFacade() {
         super(Periode.class);
     }
-    
+    public Periode getPeriodeById(long id){
+        Query createNamedQuery = getEntityManager().createNamedQuery("Periode.findByIdPeriode");
+
+        createNamedQuery.setParameter("idPeriode", id);
+
+        if (createNamedQuery.getResultList().size() > 0) {
+            return (Periode) createNamedQuery.getSingleResult();
+        }
+        else {
+            return null;
+        }
+	}
+
 }

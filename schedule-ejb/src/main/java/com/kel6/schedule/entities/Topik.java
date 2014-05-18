@@ -7,7 +7,7 @@
 package com.kel6.schedule.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Junta
+ * @author Esa_Lucu
  */
 @Entity
 @Table(name = "topik")
@@ -42,8 +42,10 @@ public class Topik implements Serializable {
     @Size(max = 150)
     @Column(name = "nm_topik")
     private String nmTopik;
-    @ManyToMany(mappedBy = "topikCollection")
-    private Collection<KaryaAkhir> karyaAkhirCollection;
+    @ManyToMany(mappedBy = "topikList")
+    private List<KaryaAkhir> karyaAkhirList;
+    @ManyToMany(mappedBy = "topikList")
+    private List<Dosen> dosenList;
 
     public Topik() {
     }
@@ -69,12 +71,21 @@ public class Topik implements Serializable {
     }
 
     @XmlTransient
-    public Collection<KaryaAkhir> getKaryaAkhirCollection() {
-        return karyaAkhirCollection;
+    public List<KaryaAkhir> getKaryaAkhirList() {
+        return karyaAkhirList;
     }
 
-    public void setKaryaAkhirCollection(Collection<KaryaAkhir> karyaAkhirCollection) {
-        this.karyaAkhirCollection = karyaAkhirCollection;
+    public void setKaryaAkhirList(List<KaryaAkhir> karyaAkhirList) {
+        this.karyaAkhirList = karyaAkhirList;
+    }
+
+    @XmlTransient
+    public List<Dosen> getDosenList() {
+        return dosenList;
+    }
+
+    public void setDosenList(List<Dosen> dosenList) {
+        this.dosenList = dosenList;
     }
 
     @Override

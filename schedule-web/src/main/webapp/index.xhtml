@@ -5,9 +5,13 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core"
     template="/template.xhtml"
     xmlns:jsf="http://xmlns.jcp.org/jsf"
-    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="content">
         Halaman Utama /Index1
+        <h:form>
+        <p:commandButton action="#{testGenetic.generateJadwal}" value="Save" />
+        </h:form>    
     </ui:define>
 </ui:composition>

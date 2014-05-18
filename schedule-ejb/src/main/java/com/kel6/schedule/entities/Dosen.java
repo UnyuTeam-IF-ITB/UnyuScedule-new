@@ -7,7 +7,7 @@
 package com.kel6.schedule.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Junta
+ * @author Esa_Lucu
  */
 @Entity
 @Table(name = "dosen")
@@ -61,22 +61,25 @@ public class Dosen implements Serializable {
     @Size(max = 255)
     @Column(name = "password")
     private String password;
-    @ManyToMany(mappedBy = "dosenCollection")
-    private Collection<BidangKeahlian> bidangKeahlianCollection;
+    @JoinTable(name = "bidang_dosen", joinColumns = {
+        @JoinColumn(name = "nik_dosen", referencedColumnName = "nik_dosen")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_bidang", referencedColumnName = "id_topik")})
+    @ManyToMany
+    private List<Topik> topikList;
     @JoinTable(name = "penguji", joinColumns = {
         @JoinColumn(name = "nik_dosen", referencedColumnName = "nik_dosen")}, inverseJoinColumns = {
         @JoinColumn(name = "id_smnsdg", referencedColumnName = "id_smnsdg")})
     @ManyToMany
-    private Collection<SeminarSidang> seminarSidangCollection;
+    private List<SeminarSidang> seminarSidangList;
     @JoinTable(name = "pembimbing", joinColumns = {
         @JoinColumn(name = "nik_dosen", referencedColumnName = "nik_dosen")}, inverseJoinColumns = {
         @JoinColumn(name = "id_ka", referencedColumnName = "id_ka")})
     @ManyToMany
-    private Collection<KaryaAkhir> karyaAkhirCollection;
+    private List<KaryaAkhir> karyaAkhirList;
     @OneToMany(mappedBy = "nikDosen")
-    private Collection<Koordinator> koordinatorCollection;
+    private List<Koordinator> koordinatorList;
     @OneToMany(mappedBy = "nikDosen")
-    private Collection<KetersediaanDosen> ketersediaanDosenCollection;
+    private List<KetersediaanDosen> ketersediaanDosenList;
 
     public Dosen() {
     }
@@ -134,48 +137,48 @@ public class Dosen implements Serializable {
     }
 
     @XmlTransient
-    public Collection<BidangKeahlian> getBidangKeahlianCollection() {
-        return bidangKeahlianCollection;
+    public List<Topik> getTopikList() {
+        return topikList;
     }
 
-    public void setBidangKeahlianCollection(Collection<BidangKeahlian> bidangKeahlianCollection) {
-        this.bidangKeahlianCollection = bidangKeahlianCollection;
-    }
-
-    @XmlTransient
-    public Collection<SeminarSidang> getSeminarSidangCollection() {
-        return seminarSidangCollection;
-    }
-
-    public void setSeminarSidangCollection(Collection<SeminarSidang> seminarSidangCollection) {
-        this.seminarSidangCollection = seminarSidangCollection;
+    public void setTopikList(List<Topik> topikList) {
+        this.topikList = topikList;
     }
 
     @XmlTransient
-    public Collection<KaryaAkhir> getKaryaAkhirCollection() {
-        return karyaAkhirCollection;
+    public List<SeminarSidang> getSeminarSidangList() {
+        return seminarSidangList;
     }
 
-    public void setKaryaAkhirCollection(Collection<KaryaAkhir> karyaAkhirCollection) {
-        this.karyaAkhirCollection = karyaAkhirCollection;
-    }
-
-    @XmlTransient
-    public Collection<Koordinator> getKoordinatorCollection() {
-        return koordinatorCollection;
-    }
-
-    public void setKoordinatorCollection(Collection<Koordinator> koordinatorCollection) {
-        this.koordinatorCollection = koordinatorCollection;
+    public void setSeminarSidangList(List<SeminarSidang> seminarSidangList) {
+        this.seminarSidangList = seminarSidangList;
     }
 
     @XmlTransient
-    public Collection<KetersediaanDosen> getKetersediaanDosenCollection() {
-        return ketersediaanDosenCollection;
+    public List<KaryaAkhir> getKaryaAkhirList() {
+        return karyaAkhirList;
     }
 
-    public void setKetersediaanDosenCollection(Collection<KetersediaanDosen> ketersediaanDosenCollection) {
-        this.ketersediaanDosenCollection = ketersediaanDosenCollection;
+    public void setKaryaAkhirList(List<KaryaAkhir> karyaAkhirList) {
+        this.karyaAkhirList = karyaAkhirList;
+    }
+
+    @XmlTransient
+    public List<Koordinator> getKoordinatorList() {
+        return koordinatorList;
+    }
+
+    public void setKoordinatorList(List<Koordinator> koordinatorList) {
+        this.koordinatorList = koordinatorList;
+    }
+
+    @XmlTransient
+    public List<KetersediaanDosen> getKetersediaanDosenList() {
+        return ketersediaanDosenList;
+    }
+
+    public void setKetersediaanDosenList(List<KetersediaanDosen> ketersediaanDosenList) {
+        this.ketersediaanDosenList = ketersediaanDosenList;
     }
 
     @Override

@@ -8,7 +8,7 @@ package com.kel6.schedule.entities;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Junta
+ * @author Esa_Lucu
  */
 @Entity
 @Table(name = "jdwl_smn_sdg")
@@ -44,7 +44,7 @@ public class JdwlSmnSdg implements Serializable {
     @Column(name = "slot_waktu_id")
     private BigInteger slotWaktuId;
     @OneToMany(mappedBy = "idJdwSs")
-    private Collection<SeminarSidang> seminarSidangCollection;
+    private List<SeminarSidang> seminarSidangList;
     @JoinColumn(name = "id_smnsdg", referencedColumnName = "id_smnsdg")
     @ManyToOne
     private SeminarSidang idSmnsdg;
@@ -52,7 +52,7 @@ public class JdwlSmnSdg implements Serializable {
     @ManyToOne
     private Periode idPeriode;
     @OneToMany(mappedBy = "idJdwlSs")
-    private Collection<SlotWaktu> slotWaktuCollection;
+    private List<JadwalDetail> jadwalDetailList;
 
     public JdwlSmnSdg() {
     }
@@ -78,12 +78,12 @@ public class JdwlSmnSdg implements Serializable {
     }
 
     @XmlTransient
-    public Collection<SeminarSidang> getSeminarSidangCollection() {
-        return seminarSidangCollection;
+    public List<SeminarSidang> getSeminarSidangList() {
+        return seminarSidangList;
     }
 
-    public void setSeminarSidangCollection(Collection<SeminarSidang> seminarSidangCollection) {
-        this.seminarSidangCollection = seminarSidangCollection;
+    public void setSeminarSidangList(List<SeminarSidang> seminarSidangList) {
+        this.seminarSidangList = seminarSidangList;
     }
 
     public SeminarSidang getIdSmnsdg() {
@@ -103,12 +103,12 @@ public class JdwlSmnSdg implements Serializable {
     }
 
     @XmlTransient
-    public Collection<SlotWaktu> getSlotWaktuCollection() {
-        return slotWaktuCollection;
+    public List<JadwalDetail> getJadwalDetailList() {
+        return jadwalDetailList;
     }
 
-    public void setSlotWaktuCollection(Collection<SlotWaktu> slotWaktuCollection) {
-        this.slotWaktuCollection = slotWaktuCollection;
+    public void setJadwalDetailList(List<JadwalDetail> jadwalDetailList) {
+        this.jadwalDetailList = jadwalDetailList;
     }
 
     @Override

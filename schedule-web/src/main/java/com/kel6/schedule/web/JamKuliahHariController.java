@@ -7,7 +7,7 @@
 package com.kel6.schedule.web;
 
 import com.kel6.schedule.entities.JamKuliahHari;
-import com.kel6.schedule.session.JamKuliahhariFacade;
+import com.kel6.schedule.session.JamKuliahHariFacade;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -22,7 +22,7 @@ import javax.ejb.EJB;
 @SessionScoped
 public class JamKuliahHariController implements Serializable {
     @EJB
-    private com.kel6.schedule.session.JamKuliahhariFacade ejbFacade;
+    private com.kel6.schedule.session.JamKuliahHariFacade ejbFacade;
     private List<JamKuliahHari> listJamKuliahhari;
     private JamKuliahHari jamKuliahhari;
 

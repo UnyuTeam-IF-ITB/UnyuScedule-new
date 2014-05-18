@@ -10,7 +10,7 @@ import com.kel6.schedule.entities.Dosen;
 import com.kel6.schedule.entities.JamKuliahHari;
 import com.kel6.schedule.entities.KetersediaanDosen;
 import com.kel6.schedule.qualifiers.LoggedIn;
-import com.kel6.schedule.session.KetersediaandosenFacade;
+import com.kel6.schedule.session.KetersediaanDosenFacade;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,13 +48,13 @@ import org.primefaces.model.ScheduleModel;
 @SessionScoped
 public class KetersediaanController implements Serializable{
     @EJB
-    private KetersediaandosenFacade ejbFacade;
+    private KetersediaanDosenFacade ejbFacade;
     private List<KetersediaanDosen> listKetersediaanDosen;
     private KetersediaanDosen ketersediaanDosen;
     private Map <String,String> map;
     
     @EJB
-    private com.kel6.schedule.session.JamKuliahhariFacade ejbJam;
+    private com.kel6.schedule.session.JamKuliahHariFacade ejbJam;
     private List<JamKuliahHari> listJamKuliahHari;
     private JamKuliahHari jamKuliahhari;
     private List<JamKuliahHari> listSelected;

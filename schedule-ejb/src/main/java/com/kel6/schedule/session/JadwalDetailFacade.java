@@ -6,7 +6,7 @@
 
 package com.kel6.schedule.session;
 
-import com.kel6.schedule.entities.BidangKeahlian;
+import com.kel6.schedule.entities.JadwalDetail;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
  * @author Esa_Lucu
  */
 @Stateless
-public class BidangKeahlianFacade extends AbstractFacade<BidangKeahlian> {
+public class JadwalDetailFacade extends AbstractFacade<JadwalDetail> {
     @PersistenceContext(unitName = "com.rpl_schedule-ejb_ejb_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -25,8 +25,8 @@ public class BidangKeahlianFacade extends AbstractFacade<BidangKeahlian> {
         return em;
     }
 
-    public BidangKeahlianFacade() {
-        super(BidangKeahlian.class);
+    public JadwalDetailFacade() {
+        super(JadwalDetail.class);
     }
     
 }

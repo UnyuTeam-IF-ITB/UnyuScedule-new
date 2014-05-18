@@ -7,7 +7,7 @@
 package com.kel6.schedule.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Junta
+ * @author Esa_Lucu
  */
 @Entity
 @Table(name = "karya_akhir")
@@ -53,13 +53,13 @@ public class KaryaAkhir implements Serializable {
         @JoinColumn(name = "id_ka", referencedColumnName = "id_ka")}, inverseJoinColumns = {
         @JoinColumn(name = "id_topik", referencedColumnName = "id_topik")})
     @ManyToMany
-    private Collection<Topik> topikCollection;
-    @ManyToMany(mappedBy = "karyaAkhirCollection")
-    private Collection<Dosen> dosenCollection;
+    private List<Topik> topikList;
+    @ManyToMany(mappedBy = "karyaAkhirList")
+    private List<Dosen> dosenList;
     @OneToMany(mappedBy = "idKa")
-    private Collection<SeminarSidang> seminarSidangCollection;
+    private List<SeminarSidang> seminarSidangList;
     @OneToMany(mappedBy = "idKa")
-    private Collection<Mahasiswa> mahasiswaCollection;
+    private List<Mahasiswa> mahasiswaList;
     @JoinColumn(name = "nim", referencedColumnName = "nim")
     @ManyToOne
     private Mahasiswa nim;
@@ -99,39 +99,39 @@ public class KaryaAkhir implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Topik> getTopikCollection() {
-        return topikCollection;
+    public List<Topik> getTopikList() {
+        return topikList;
     }
 
-    public void setTopikCollection(Collection<Topik> topikCollection) {
-        this.topikCollection = topikCollection;
-    }
-
-    @XmlTransient
-    public Collection<Dosen> getDosenCollection() {
-        return dosenCollection;
-    }
-
-    public void setDosenCollection(Collection<Dosen> dosenCollection) {
-        this.dosenCollection = dosenCollection;
+    public void setTopikList(List<Topik> topikList) {
+        this.topikList = topikList;
     }
 
     @XmlTransient
-    public Collection<SeminarSidang> getSeminarSidangCollection() {
-        return seminarSidangCollection;
+    public List<Dosen> getDosenList() {
+        return dosenList;
     }
 
-    public void setSeminarSidangCollection(Collection<SeminarSidang> seminarSidangCollection) {
-        this.seminarSidangCollection = seminarSidangCollection;
+    public void setDosenList(List<Dosen> dosenList) {
+        this.dosenList = dosenList;
     }
 
     @XmlTransient
-    public Collection<Mahasiswa> getMahasiswaCollection() {
-        return mahasiswaCollection;
+    public List<SeminarSidang> getSeminarSidangList() {
+        return seminarSidangList;
     }
 
-    public void setMahasiswaCollection(Collection<Mahasiswa> mahasiswaCollection) {
-        this.mahasiswaCollection = mahasiswaCollection;
+    public void setSeminarSidangList(List<SeminarSidang> seminarSidangList) {
+        this.seminarSidangList = seminarSidangList;
+    }
+
+    @XmlTransient
+    public List<Mahasiswa> getMahasiswaList() {
+        return mahasiswaList;
+    }
+
+    public void setMahasiswaList(List<Mahasiswa> mahasiswaList) {
+        this.mahasiswaList = mahasiswaList;
     }
 
     public Mahasiswa getNim() {

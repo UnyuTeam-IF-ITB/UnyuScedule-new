@@ -7,7 +7,7 @@
 package com.kel6.schedule.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Junta
+ * @author Esa_Lucu
  */
 @Entity
 @Table(name = "seminar_sidang")
@@ -43,8 +43,8 @@ public class SeminarSidang implements Serializable {
     private Long idSmnsdg;
     @Column(name = "status_selesai")
     private Integer statusSelesai;
-    @ManyToMany(mappedBy = "seminarSidangCollection")
-    private Collection<Dosen> dosenCollection;
+    @ManyToMany(mappedBy = "seminarSidangList")
+    private List<Dosen> dosenList;
     @JoinColumn(name = "id_ka", referencedColumnName = "id_ka")
     @ManyToOne
     private KaryaAkhir idKa;
@@ -52,11 +52,11 @@ public class SeminarSidang implements Serializable {
     @ManyToOne
     private JdwlSmnSdg idJdwSs;
     @OneToMany(mappedBy = "idSmnsdg")
-    private Collection<JdwlSmnSdg> jdwlSmnSdgCollection;
+    private List<JdwlSmnSdg> jdwlSmnSdgList;
     @OneToMany(mappedBy = "idSmnsdg")
-    private Collection<Seminar> seminarCollection;
+    private List<Seminar> seminarList;
     @OneToMany(mappedBy = "idSmnsdg")
-    private Collection<Sidang> sidangCollection;
+    private List<Sidang> sidangList;
 
     public SeminarSidang() {
     }
@@ -82,12 +82,12 @@ public class SeminarSidang implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Dosen> getDosenCollection() {
-        return dosenCollection;
+    public List<Dosen> getDosenList() {
+        return dosenList;
     }
 
-    public void setDosenCollection(Collection<Dosen> dosenCollection) {
-        this.dosenCollection = dosenCollection;
+    public void setDosenList(List<Dosen> dosenList) {
+        this.dosenList = dosenList;
     }
 
     public KaryaAkhir getIdKa() {
@@ -107,30 +107,30 @@ public class SeminarSidang implements Serializable {
     }
 
     @XmlTransient
-    public Collection<JdwlSmnSdg> getJdwlSmnSdgCollection() {
-        return jdwlSmnSdgCollection;
+    public List<JdwlSmnSdg> getJdwlSmnSdgList() {
+        return jdwlSmnSdgList;
     }
 
-    public void setJdwlSmnSdgCollection(Collection<JdwlSmnSdg> jdwlSmnSdgCollection) {
-        this.jdwlSmnSdgCollection = jdwlSmnSdgCollection;
-    }
-
-    @XmlTransient
-    public Collection<Seminar> getSeminarCollection() {
-        return seminarCollection;
-    }
-
-    public void setSeminarCollection(Collection<Seminar> seminarCollection) {
-        this.seminarCollection = seminarCollection;
+    public void setJdwlSmnSdgList(List<JdwlSmnSdg> jdwlSmnSdgList) {
+        this.jdwlSmnSdgList = jdwlSmnSdgList;
     }
 
     @XmlTransient
-    public Collection<Sidang> getSidangCollection() {
-        return sidangCollection;
+    public List<Seminar> getSeminarList() {
+        return seminarList;
     }
 
-    public void setSidangCollection(Collection<Sidang> sidangCollection) {
-        this.sidangCollection = sidangCollection;
+    public void setSeminarList(List<Seminar> seminarList) {
+        this.seminarList = seminarList;
+    }
+
+    @XmlTransient
+    public List<Sidang> getSidangList() {
+        return sidangList;
+    }
+
+    public void setSidangList(List<Sidang> sidangList) {
+        this.sidangList = sidangList;
     }
 
     @Override

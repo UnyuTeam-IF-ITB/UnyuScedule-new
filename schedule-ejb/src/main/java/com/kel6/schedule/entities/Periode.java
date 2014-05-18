@@ -7,18 +7,15 @@
 package com.kel6.schedule.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Junta
+ * @author Esa_Lucu
  */
 @Entity
 @Table(name = "periode")
@@ -44,12 +41,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Periode.findByRentangSdgAwal", query = "SELECT p FROM Periode p WHERE p.rentangSdgAwal = :rentangSdgAwal"),
     @NamedQuery(name = "Periode.findByRentangSdgAkhir", query = "SELECT p FROM Periode p WHERE p.rentangSdgAkhir = :rentangSdgAkhir")})
 public class Periode implements Serializable {
-    private static final long serialVersionUID = 1L;  
+    private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "periode_seq")
-    @SequenceGenerator(name = "periode_seq",sequenceName = "seq_periode",allocationSize = 1)
     @Column(name = "id_periode")
     private Long idPeriode;
     @Size(max = 30)
@@ -70,7 +65,7 @@ public class Periode implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date rentangSdgAkhir;
     @OneToMany(mappedBy = "idPeriode")
-    private Collection<JdwlSmnSdg> jdwlSmnSdgCollection;
+    private List<JdwlSmnSdg> jdwlSmnSdgList;
 
     public Periode() {
     }
@@ -136,12 +131,12 @@ public class Periode implements Serializable {
     }
 
     @XmlTransient
-    public Collection<JdwlSmnSdg> getJdwlSmnSdgCollection() {
-        return jdwlSmnSdgCollection;
+    public List<JdwlSmnSdg> getJdwlSmnSdgList() {
+        return jdwlSmnSdgList;
     }
 
-    public void setJdwlSmnSdgCollection(Collection<JdwlSmnSdg> jdwlSmnSdgCollection) {
-        this.jdwlSmnSdgCollection = jdwlSmnSdgCollection;
+    public void setJdwlSmnSdgList(List<JdwlSmnSdg> jdwlSmnSdgList) {
+        this.jdwlSmnSdgList = jdwlSmnSdgList;
     }
 
     @Override
