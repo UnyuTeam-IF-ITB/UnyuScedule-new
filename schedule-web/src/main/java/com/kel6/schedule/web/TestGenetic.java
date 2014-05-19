@@ -64,7 +64,10 @@ public class TestGenetic implements Serializable{
         
         
         dataSource.generateSlotWaktu();
-        listJadwal = gen.generateJadwal();
+        if(dataSource.getListGenSlotWaktu().size()>0)
+            listJadwal = gen.generateJadwal();
+        else
+            listJadwal = null;
         // print jadwal for checking
 //        System.out.println("ID SLOT WAKTU" + "\t"+
 //                            "DATE" + "\t"+

@@ -71,7 +71,7 @@ public class Genetic implements Runnable{
         int generationCount = 0;
         int konfergenCount = 0;
         float prevFitness = 0f;
-        while (myPop.getFittest().getFitness() < FitnessCalc.getMaxFitness() && generationCount < 50000){
+        while (myPop.getFittest().getFitness() < FitnessCalc.getMaxFitness() && generationCount < 1000){
              generationCount++;
              System.out.println("Generation: " + generationCount + " Fittest: " + myPop.getFittest().getFitness());
              if (myPop.getFittest().getFitness() == prevFitness){
@@ -120,7 +120,10 @@ public class Genetic implements Runnable{
             krom.add(dataJadwal);
             listTJdw.add(temp);
          }
-        return listTJdw;
+         if(generationCount >= 1000)
+             return null;
+         else
+            return listTJdw;
     }
     public void run(){
         jdwlGenerate = new ArrayList<JdwlSmnSdg>();
