@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Esa_Lucu
  */
-class Kromosom {
+public class Kromosom {
     private List<Dosen> genDosenPenguji;
     private KaryaAkhir genKA;
     private Ruangan genRuangan;

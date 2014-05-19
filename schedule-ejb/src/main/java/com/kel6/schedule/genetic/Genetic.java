@@ -63,7 +63,7 @@ public class Genetic implements Runnable{
     public void setJdwlGenerate(List<JdwlSmnSdg> jdwlGenerate) {
         this.jdwlGenerate = jdwlGenerate;
     }
-    public void generateJadwal(){
+    public List<TempJadwal> generateJadwal(){
         jdwlGenerate = new ArrayList<JdwlSmnSdg>();
         // Create an initial population
         Population myPop = new Population(80, true);
@@ -97,6 +97,8 @@ public class Genetic implements Runnable{
                             "ID_PEMBIMBING"+"\t"+
                             "ID_DOSEN");
          Date genDate = Calendar.getInstance().getTime();
+         List<Kromosom> krom = new ArrayList<Kromosom>();
+         List<TempJadwal> listTJdw = new ArrayList<TempJadwal>();
          for (int i = 0; i<result.size(); i++){
             Kromosom dataJadwal = result.getKromosom(i);
             System.out.println(dataJadwal.getGenWaktu().getJam().getIdJam() + "\t"+
@@ -105,20 +107,20 @@ public class Genetic implements Runnable{
                                dataJadwal.getGenKA().getIdKa()+"\t"+
                                dataJadwal.getGenKA().getDosenList().get(0).getNikDosen()+"\t"+
                                dataJadwal.getGenDosenPenguji().get(0).getNikDosen());
+            TempJadwal temp = new TempJadwal();
+            temp.setJudulKaryaAkhir(dataJadwal.getGenKA().getJudulKa());
+            temp.setPembimbing(dataJadwal.getGenKA().getDosenList().get(0).getNmDosen());
+            temp.setPenguji(dataJadwal.getGenDosenPenguji().get(0).getNmDosen());
+            temp.setTanggalSidang(dataJadwal.getGenDate());
+            temp.setSlotWaktu(dataJadwal.getGenWaktu().getJam().getWaktuJam());
             JdwlSmnSdg jdw = new JdwlSmnSdg();
             SlotWaktu slot = new SlotWaktu();
-//            slot.
-//            element.setDosenPenguji(dataJadwal.getGenDosenPenguji());
-//            element.setGenerateDate(genDate);
-//            element.setKaryaAkhir(dataJadwal.getGenKA());
-//            element.setRuangan(dataJadwal.getGenRuangan());
-//            element.setSlotWaktu(dataJadwal.getGenWaktu());
-//            element.setTanggal(dataJadwal.getGenDate());
-//            element.setStatusHasilPelaksanaan(BigInteger.valueOf(0));
-//            element.setStatusPelaksanaan(BigInteger.valueOf(0));
-//            jdwlGenerate.add(element);
+            jdw.setIdPeriode(DataSource.getInstance().getPeriodeJadwal());
+            jdw.setIdSmnsdg(null);
+            krom.add(dataJadwal);
+            listTJdw.add(temp);
          }
-//        return jdwlGenerate;
+        return listTJdw;
     }
     public void run(){
         jdwlGenerate = new ArrayList<JdwlSmnSdg>();

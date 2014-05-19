@@ -7,14 +7,17 @@
 package com.kel6.schedule.web;
 
 import com.kel6.schedule.entities.JdwlSmnSdg;
+import com.kel6.schedule.entities.Periode;
 import com.kel6.schedule.genetic.DataSource;
 import com.kel6.schedule.genetic.DataSource;
 import com.kel6.schedule.genetic.Genetic;
+import com.kel6.schedule.genetic.TempJadwal;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.sql.rowset.spi.SyncProvider;
 
 /**
@@ -26,7 +29,7 @@ import javax.sql.rowset.spi.SyncProvider;
  * @author Esa_Lucu
  */
 @ManagedBean (name= "testGenetic")
-@SessionScoped
+@ViewScoped
 public class TestGenetic implements Serializable{
     @EJB
     private com.kel6.schedule.session.PeriodeFacade ejbPeriode;
@@ -38,7 +41,17 @@ public class TestGenetic implements Serializable{
     private com.kel6.schedule.session.RuanganFacade ejbRuangan;
     @EJB
     private com.kel6.schedule.session.JamKuliahHariFacade ejbJam;
-    public void generateJadwal(){
+    private List<TempJadwal> listJadwal;
+
+    public List<TempJadwal> getListJadwal() {
+        return listJadwal;
+    }
+
+    public void setListJadwal(List<TempJadwal> listJadwal) {
+        this.listJadwal = listJadwal;
+    }
+    
+    public void generateJadwal(Periode periode){
         Genetic gen = new Genetic();
         DataSource dataSource ;
         dataSource = DataSource.getInstance();
@@ -47,9 +60,11 @@ public class TestGenetic implements Serializable{
         dataSource.setListJam(ejbJam.findAll()); // daftar karya akhir, mahasiswa, daftar pembimbing
         dataSource.setListGenRuangan(ejbRuangan.findAll()); // daftar ruangan, avaible ruangan
         dataSource.setListGenSlotWaktu(dataSource.getListGenSlotWaktu()); // daftar slot waktu dari table slotwaktu
-        dataSource.setPeriodeJadwal(ejbPeriode.getPeriodeById(16)); // periode pelaksanaan sidang / seminar
+        dataSource.setPeriodeJadwal(ejbPeriode.getPeriodeById(periode.getIdPeriode())); // periode pelaksanaan sidang / seminar
+        
+        
         dataSource.generateSlotWaktu();
-        gen.generateJadwal();
+        listJadwal = gen.generateJadwal();
         // print jadwal for checking
 //        System.out.println("ID SLOT WAKTU" + "\t"+
 //                            "DATE" + "\t"+
