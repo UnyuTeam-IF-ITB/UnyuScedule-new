@@ -21,7 +21,7 @@ class Kromosom {
     private List<Dosen> genDosenPenguji;
     private KaryaAkhir genKA;
     private Ruangan genRuangan;
-    private List<SlotWaktu> genWaktu;
+    private SlotWaktu genWaktu;
     Date genDate;
     int pinalty = 0;
     public static Kromosom GenerateKromosom() {
@@ -29,11 +29,12 @@ class Kromosom {
         Kromosom krom = new Kromosom();
         
         // generate kromosom by random gen
+        krom.setGenKA(sourceData.getRandKA());
+        
         krom.setGenWaktu(sourceData.getRandWaktu());
 
-        krom.setGenDate(krom.genWaktu.get(0).getTanggal());
+        krom.setGenDate(krom.genWaktu.getTanggal());
 
-        krom.setGenKA(sourceData.getRandKA());
 
         krom.setGenRuangan(sourceData.getRandRuangan());
         
@@ -70,6 +71,15 @@ class Kromosom {
 
         return krom;
     }
+    
+    
+    public KaryaAkhir getGenKA() {
+        return genKA;
+    }
+
+    public void setGenKA(KaryaAkhir genKA) {
+        this.genKA = genKA;
+    }
 
     public List<Dosen> getGenDosenPenguji() {
         return genDosenPenguji;
@@ -79,14 +89,8 @@ class Kromosom {
         this.genDosenPenguji = genDosenPenguji;
     }
 
-    public KaryaAkhir getGenKA() {
-        return genKA;
-    }
-
-    public void setGenKA(KaryaAkhir genKA) {
-        this.genKA = genKA;
-    }
-
+   
+    
     public Ruangan getGenRuangan() {
         return genRuangan;
     }
@@ -95,20 +99,12 @@ class Kromosom {
         this.genRuangan = genRuangan;
     }
 
-    public List<SlotWaktu> getGenWaktu() {
+    public SlotWaktu getGenWaktu() {
         return genWaktu;
     }
 
-    public void setGenWaktu(List<SlotWaktu> genWaktu) {
+    public void setGenWaktu(SlotWaktu genWaktu) {
         this.genWaktu = genWaktu;
-    }
-
-    public Date getGenDate() {
-        return genDate;
-    }
-
-    public void setGenDate(Date genDate) {
-        this.genDate = genDate;
     }
 
     public int getPinalty() {
@@ -118,7 +114,13 @@ class Kromosom {
     public void setPinalty(int pinalty) {
         this.pinalty = pinalty;
     }
-    
-    
+
+    public Date getGenDate() {
+        return genDate;
+    }
+
+    public void setGenDate(Date genDate) {
+        this.genDate = genDate;
+    }
 
 }

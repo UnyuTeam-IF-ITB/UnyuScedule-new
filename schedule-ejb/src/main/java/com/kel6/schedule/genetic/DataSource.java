@@ -9,6 +9,7 @@ package com.kel6.schedule.genetic;
 import com.kel6.schedule.entities.Dosen;
 import com.kel6.schedule.entities.JamKuliahHari;
 import com.kel6.schedule.entities.KaryaAkhir;
+import com.kel6.schedule.entities.KetersediaanDosen;
 import com.kel6.schedule.entities.Periode;
 import com.kel6.schedule.entities.Ruangan;
 import com.kel6.schedule.entities.SlotWaktu;
@@ -49,7 +50,7 @@ public class DataSource {
 
     public static void resetData() {
         //instance = new DataSource();
-        index = 0;       
+        index = 0;           
     }
     
     public Ruangan getRandRuangan() {
@@ -58,18 +59,45 @@ public class DataSource {
         return listGenRuangan.get(indexs);
     }
 
-    public List<SlotWaktu> getRandWaktu() {
-        int indexs = (int) (Math.random() * listGenSlotWaktu.size());
-        List<SlotWaktu> listSlotWaktu = new ArrayList<SlotWaktu>();
-        while(listGenSlotWaktu.get(indexs).getJam().getIdJam()>=StaticVariable.SIZE_JAM_PERHARI-StaticVariable.SIZE_LAMA_SIDANG){
-            indexs = (int) (Math.random() * listGenSlotWaktu.size());
-        }
-        for(int i=0;i<StaticVariable.SIZE_LAMA_SIDANG;i++){
-            listSlotWaktu.add(listGenSlotWaktu.get(index+i));
-        }
+    public SlotWaktu getRandWaktu() {
+//        int indexs = (int) (Math.random() * listGenSlotWaktu.size());
+//        List<SlotWaktu> listSlotWaktu = new ArrayList<SlotWaktu>();
+//        while(listGenSlotWaktu.get(indexs).getJam().getIdJam()>=StaticVariable.SIZE_JAM_PERHARI-StaticVariable.SIZE_LAMA_SIDANG){
+//            indexs = (int) (Math.random() * listGenSlotWaktu.size());
+//        }
+//        for(int i=0;i<StaticVariable.SIZE_LAMA_SIDANG;i++){
+//            listSlotWaktu.add(listGenSlotWaktu.get(index+i));
+//        }
         
-        return listSlotWaktu;
+        int indexs = (int) (Math.random() * listGenSlotWaktu.size());
+        SlotWaktu slotWaktu ;
+        slotWaktu = listGenSlotWaktu.get(indexs);
+//        for(int i=0;i<StaticVariable.SIZE_LAMA_SIDANG;i++){
+//            listSlotWaktu.add(listGenSlotWaktu.get(index+i));
+//        }
+        
+        return slotWaktu;
     }
+    
+//    public List<SlotWaktu> getRandWaktu(KaryaAkhir ka) {
+//        int indexs = (int) (Math.random() * listGenSlotWaktu.size());
+//        int indeks2 = (int) (Math.random() * ka.getDosenList().get(0).getKetersediaanDosenList().size());
+//        while(listGenSlotWaktu.get(indexs).getJam().getIdJam()>=StaticVariable.SIZE_JAM_PERHARI-StaticVariable.SIZE_LAMA_SIDANG
+//                && listGenSlotWaktu.get(indexs).getJam().getIdJam() != ka.getDosenList().get(0).getKetersediaanDosenList().get(indeks2)){
+//            indexs = (int) (Math.random() * listGenSlotWaktu.size());
+//        }
+//        KetersediaanDosen wktDosen = ka.getDosenList().get(0).getKetersediaanDosenList().get(indeks2);
+//        List<SlotWaktu> listSlotWaktu = new ArrayList<SlotWaktu>();        
+//        while(listGenSlotWaktu.get(indexs).getJam().getIdJam()>=StaticVariable.SIZE_JAM_PERHARI-StaticVariable.SIZE_LAMA_SIDANG
+//                && listGenSlotWaktu.get(indexs).getJam().getIdJam() != ka.getDosenList().get(0).getKetersediaanDosenList().get(indeks2)){
+//            indexs = (int) (Math.random() * listGenSlotWaktu.size());
+//        }
+//        for(int i=0;i<StaticVariable.SIZE_LAMA_SIDANG;i++){
+//            listSlotWaktu.add(listGenSlotWaktu.get(index+i));
+//        }
+//        
+//        return listSlotWaktu;
+//    }
     
     public void setPeriodeJadwal(Periode periodeJadwal) {
         this.periodeJadwal = periodeJadwal;
@@ -118,10 +146,14 @@ public class DataSource {
     }
     
     public KaryaAkhir getRandKA() {
-        int index = (int) (Math.random() * listGenDosen.size());
+        //index = (int) listGenKaryaAkhir.size());
         KaryaAkhir temp = listGenKaryaAkhir.get(index);
         index++;
         return temp;
+//        int index = (int) (Math.random() * listGenKaryaAkhir.size());
+//        KaryaAkhir temp = listGenKaryaAkhir.get(index);
+//        index++;
+//        return temp;
     }
     
     public List<Dosen> getRandDosen(KaryaAkhir ka) {
@@ -234,5 +266,5 @@ public class DataSource {
         }
     }
     
-    
+   
 }

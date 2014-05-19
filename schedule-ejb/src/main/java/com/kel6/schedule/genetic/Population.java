@@ -25,15 +25,15 @@ class Population {
              for (int i = 0; i < lengthIndv; i++) {
                  System.out.println("indv-" + i);
                  Individual newIndividual = new Individual();
-                 newIndividual.generateRandomIndividual();
+                 newIndividual.generateIndividual();
                  saveIndividual(i, newIndividual);
              }
          }
      }
      
-     // Save individual
-     public void saveIndividual(int index, Individual indiv) {
-         individuals[index] = indiv;
+         /* Getters */
+     public Individual getIndividual(int index) {
+         return individuals[index];
      }
 
     public Individual getFittest() {
@@ -45,16 +45,18 @@ class Population {
              }
          }
          return fittest;
-    }
-    
+     }
+
     /* Public methods */
      // Get population size
      public int size() {
          return individuals.length;
      }
-    /* Getters */
-     public Individual getIndividual(int index) {
-         return individuals[index];
+
+    // Save individual
+     public void saveIndividual(int index, Individual indiv) {
+         individuals[index] = indiv;
      }
+
     
 }

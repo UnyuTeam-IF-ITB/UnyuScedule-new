@@ -34,7 +34,7 @@ public class Genetic implements Runnable{
     //Genetic Attribute
     /* GA parameters */
      private static final double uniformRate = 0.5;
-     private static final double mutationRate = 0.015;
+     private static final double mutationRate = 0.15;
      private static final int tournamentSize = 5;
      private static final boolean elitism = true;
 
@@ -66,12 +66,12 @@ public class Genetic implements Runnable{
     public void generateJadwal(){
         jdwlGenerate = new ArrayList<JdwlSmnSdg>();
         // Create an initial population
-        Population myPop = new Population(50, true);
+        Population myPop = new Population(80, true);
         // Evolve our population until we reach an optimum solution
         int generationCount = 0;
         int konfergenCount = 0;
         float prevFitness = 0f;
-        while (myPop.getFittest().getFitness() < FitnessCalc.getMaxFitness()  ) {
+        while (myPop.getFittest().getFitness() < FitnessCalc.getMaxFitness() && generationCount < 50000){
              generationCount++;
              System.out.println("Generation: " + generationCount + " Fittest: " + myPop.getFittest().getFitness());
              if (myPop.getFittest().getFitness() == prevFitness){
@@ -99,7 +99,7 @@ public class Genetic implements Runnable{
          Date genDate = Calendar.getInstance().getTime();
          for (int i = 0; i<result.size(); i++){
             Kromosom dataJadwal = result.getKromosom(i);
-            System.out.println(dataJadwal.getGenWaktu().get(i).getJam().getIdJam() + "\t"+
+            System.out.println(dataJadwal.getGenWaktu().getJam().getIdJam() + "\t"+
                                dataJadwal.getGenDate().toString() + "\t"+
                                dataJadwal.getGenRuangan().getIdRuangan() +"\t"+
                                dataJadwal.getGenKA().getIdKa()+"\t"+
@@ -123,12 +123,12 @@ public class Genetic implements Runnable{
     public void run(){
         jdwlGenerate = new ArrayList<JdwlSmnSdg>();
         // Create an initial population
-        Population myPop = new Population(50, true);
+        Population myPop = new Population(80, true);
         // Evolve our population until we reach an optimum solution
         int generationCount = 0;
         int konfergenCount = 0;
         float prevFitness = 0f;
-        while (myPop.getFittest().getFitness() < FitnessCalc.getMaxFitness()  ) {
+        while (myPop.getFittest().getFitness() < FitnessCalc.getMaxFitness() ) {
              generationCount++;
              System.out.println("Generation: " + generationCount + " Fittest: " + myPop.getFittest().getFitness());
              if (myPop.getFittest().getFitness() == prevFitness){
@@ -156,7 +156,7 @@ public class Genetic implements Runnable{
          Date genDate = Calendar.getInstance().getTime();
          for (int i = 0; i<result.size(); i++){
             Kromosom dataJadwal = result.getKromosom(i);
-            System.out.println(dataJadwal.getGenWaktu().get(i).getJam().getIdJam() + "\t"+
+            System.out.println(dataJadwal.getGenWaktu().getJam().getIdJam() + "\t"+
                                dataJadwal.getGenDate().toString() + "\t"+
                                dataJadwal.getGenRuangan().getIdRuangan() +"\t"+
                                dataJadwal.getGenKA().getIdKa()+"\t"+
@@ -241,10 +241,11 @@ public class Genetic implements Runnable{
                      kromosom = Kromosom.UpdateGenDosen(kromosom);
                  }
 
-                 // mutate Slot Waktu
+                 // mutate Slot  and date
                  if (Math.random() <= mutationRate) {
                      // Create random gene
                      kromosom = Kromosom.UpdateGenWaktu(kromosom);
+                     kromosom.setGenDate(kromosom.getGenWaktu().getTanggal()); //= Kromosom.UpdateGenDate(kromosom);
                  }
 
                  // mutate Ruangan
@@ -253,10 +254,10 @@ public class Genetic implements Runnable{
                      kromosom = Kromosom.UpdateGenRuangan(kromosom);
                  }
                  // mutate Date
-                  if (Math.random() <= mutationRate) {
-                     // Create random gene
-                     kromosom = Kromosom.UpdateGenDate(kromosom);
-                 }
+//                  if (Math.random() <= mutationRate) {
+//                     // Create random gene
+//                     kromosom = Kromosom.UpdateGenDate(kromosom);
+//                 }
              
 //             kromosom.setPinalty();
                kromosom.setPinalty(FitnessCalc.getPinalty(kromosom, indiv));
@@ -285,8 +286,15 @@ public class Genetic implements Runnable{
 //                    } 
 //                 }
                  
-                 
-                 newKromosom.setGenDosenPenguji(indiv2.getKromosom(i).getGenDosenPenguji());
+                 if (indiv1.getKromosom(i).getGenKA().getTopikList().get(0).getIdTopik() ==
+                            indiv2.getKromosom(i).getGenKA().getTopikList().get(0).getIdTopik()){
+                            newKromosom.setGenDosenPenguji(indiv2.getKromosom(i).getGenDosenPenguji());
+//                            k = indiv2.getKromosom(i).getGenKA().getTopikList().size();
+//                            j = indiv1.getKromosom(i).getGenKA().getTopikList().size();
+//                        }
+                 }
+                 //newKromosom.setGenDosenPenguji(indiv2.getKromosom(i).getGenDosenPenguji());
+                 //newKromosom.setGenDosenPenguji(indiv2.getKromosom(i).getGenDosenPenguji());
                  newKromosom.setGenRuangan(indiv2.getKromosom(i).getGenRuangan());
                  newKromosom.setGenWaktu(indiv2.getKromosom(i).getGenWaktu());
                  newKromosom.setGenDate(indiv2.getKromosom(i).getGenDate());

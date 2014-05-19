@@ -19,6 +19,12 @@ import java.util.List;
 class FitnessCalc {
     static Kromosom[] solution = new Kromosom[64];
     
+    /* Public methods */
+     // Set a candidate solution as a byte array
+     public static void setSolution(Kromosom[] newSolution) {
+         solution = newSolution;
+     }
+
     // Calculate inidividuals fittness by comparing it to our candidate solution
     public static float getFitness(Individual individual) {
          float fitness = 0f;
@@ -66,21 +72,22 @@ class FitnessCalc {
              List<KetersediaanDosen> listSDosen = tempDosen.getKetersediaanDosenList();
              for (int i=0; i<listSDosen.size(); i++){
                 int n=i;
-                for (int m=0; m<kromosom.getGenWaktu().size(); m++){    
-                    if (kromosom.getGenWaktu().get(m).getJam().getIdJam() ==  listSDosen.get(n+m).getIdJam().getIdJam() &&
-                        kromosom.getGenDate().compareTo(listSDosen.get(n).getTanggalSedia()) == 0){
-                            statusPinalty = false;
-                            i = listSDosen.size();
-                    }else
-                            //statusPinalty = true;
-                            i=n;
-                            m=kromosom.getGenWaktu().size(); //klo ga sama ga usah dibandingin lg
-                }
-//                if (kromosom.getGenWaktu().get(0).getJam().getIdJam() ==  listSDosen.get(i).getIdJam().getIdJam() &&
-//                    kromosom.getGenDate().compareTo(listSDosen.get(i).getTanggalSedia()) == 0){
-//                        statusPinalty = false;
-//                        i = listSDosen.size();
+//                for (int m=0; m<kromosom.getGenWaktu().size(); m++){    
+//                    if ((m+n)<listSDosen.size() &&
+//                        kromosom.getGenWaktu().get(m).getJam().getIdJam() ==  listSDosen.get(n+m).getIdJam().getIdJam() &&
+//                        kromosom.getGenDate().compareTo(listSDosen.get(n).getTanggalSedia()) == 0){
+//                            statusPinalty = false;
+//                            i = listSDosen.size();
+//                    }else
+//                            //statusPinalty = true;
+//                            i=n;
+//                            m=kromosom.getGenWaktu().size(); //klo ga sama ga usah dibandingin lg
 //                }
+                if (kromosom.getGenWaktu().getJam().getIdJam() ==  listSDosen.get(i).getIdJam().getIdJam() &&
+                    kromosom.getGenDate().compareTo(listSDosen.get(i).getTanggalSedia()) == 0){
+                        statusPinalty = false;
+                        i = listSDosen.size();
+                }
              }
              if (statusPinalty){
                // System.out.println("pinalty Dosen waktu ");
@@ -103,22 +110,23 @@ class FitnessCalc {
              List<KetersediaanDosen> listSDosen = tempDosen.getKetersediaanDosenList();
              for (int i=0; i<listSDosen.size(); i++){
                 int n=i;
-                for (int m=0; m<kromosom.getGenWaktu().size(); m++){
-                    if (kromosom.getGenWaktu().get(m).getJam().getIdJam() ==  listSDosen.get(n+m).getIdJam().getIdJam() &&
-                        kromosom.getGenDate().compareTo(listSDosen.get(n).getTanggalSedia()) == 0){
-                            statusPinalty = false;
-                            i = listSDosen.size();
-                    }else{
-                            //statusPinalty = true;
-                            i = n;
-                            m=kromosom.getGenWaktu().size(); //klo ga sama ga usah dibandingin lg
-                    }
-                }
-//                if (kromosom.getGenWaktu().get(0).getJam().getIdJam() ==  listSDosen.get(i).getIdJam().getIdJam() &&
-//                    kromosom.getGenDate().compareTo(listSDosen.get(i).getTanggalSedia()) == 0){
-//                    statusPinalty = false;
-//                    i = listSDosen.size();
+//                for (int m=0; m<kromosom.getGenWaktu().size(); m++){
+//                    if ((n+m)<listSDosen.size() &&
+//                        kromosom.getGenWaktu().get(m).getJam().getIdJam() ==  listSDosen.get(n+m).getIdJam().getIdJam() &&
+//                        kromosom.getGenDate().compareTo(listSDosen.get(n).getTanggalSedia()) == 0){
+//                            statusPinalty = false;
+//                            i = listSDosen.size();
+//                    }else{
+//                            //statusPinalty = true;
+//                            i = n;
+//                            m=kromosom.getGenWaktu().size(); //klo ga sama ga usah dibandingin lg
+//                    }
 //                }
+                if (kromosom.getGenWaktu().getJam().getIdJam() ==  listSDosen.get(i).getIdJam().getIdJam() &&
+                    kromosom.getGenDate().compareTo(listSDosen.get(i).getTanggalSedia()) == 0){
+                    statusPinalty = false;
+                    i = listSDosen.size();
+                }
              }
              if (statusPinalty){
                // System.out.println("pinalty Dosen waktu ");
@@ -186,23 +194,24 @@ class FitnessCalc {
          List<KetersediaanRuangan> listSRuangan = kromosom.getGenRuangan().getKetersediaanRuanganList();
          for (int i=0; i<listSRuangan.size(); i++){
             int n=i;
-            for (int m=0; m<kromosom.getGenWaktu().size(); m++){
-                if (kromosom.getGenWaktu().get(m).getJam().getIdJam() ==  listSRuangan.get(m+n).getIdJam().getIdJam() &&
-                    kromosom.getGenDate().compareTo(listSRuangan.get(n).getTanggal())== 0 ){
-                    statusPinalty = false;
-                    i = listSRuangan.size();
-                }else{
-                    //statusPinalty = true;
-                    i = n;
-                    m=kromosom.getGenWaktu().size(); //klo ga sama ga usah dibandingin lg
-                }
-            }
-        
-//            if (kromosom.getGenWaktu().get(0).getJam().getIdJam() ==  listSRuangan.get(i).getIdJam().getIdJam() &&
-//                kromosom.getGenDate().compareTo(listSRuangan.get(i).getTanggal())== 0 ){
-//                statusPinalty = false;
-//                i = listSRuangan.size();
+//            for (int m=0; m<kromosom.getGenWaktu().size(); m++){
+//                if ((m+n)<listSRuangan.size() &&
+//                    kromosom.getGenWaktu().get(m).getJam().getIdJam() ==  listSRuangan.get(m+n).getIdJam().getIdJam() &&
+//                    kromosom.getGenDate().compareTo(listSRuangan.get(n).getTanggal())== 0 ){
+//                    statusPinalty = false;
+//                    i = listSRuangan.size();
+//                }else{
+//                    statusPinalty = true;
+//                    i = n;
+//                    m=kromosom.getGenWaktu().size(); //klo ga sama ga usah dibandingin lg
+//                }
 //            }
+//        
+            if (kromosom.getGenWaktu().getJam().getIdJam() ==  listSRuangan.get(i).getIdJam().getIdJam() &&
+                kromosom.getGenDate().compareTo(listSRuangan.get(i).getTanggal())== 0 ){
+                statusPinalty = false;
+                i = listSRuangan.size();
+            }
          }
          if (statusPinalty){
             //System.out.println("pinalty Ruangan waktu ");
@@ -220,15 +229,25 @@ class FitnessCalc {
            for (int j = 0; j<individual.size();j++){
                     Kromosom pointer2 = individual.getKromosom(j);
                     if (pointer2 != null){
-                        for (int m=0; m<kromosom.getGenWaktu().size(); m++){
-                            if ((kromosom.getGenRuangan().getIdRuangan().equals(pointer2.getGenRuangan().getIdRuangan())) &&
-                                (kromosom.getGenWaktu().get(m).getJam().getIdJam() == pointer2.getGenWaktu().get(m).getJam().getIdJam()) &&
-                                (kromosom.getGenDate().compareTo(pointer2.getGenDate())==0) &&
-                                (kromosom.getGenKA().getIdKa() != pointer2.getGenKA().getIdKa())){
-                                 pinalty++;
-                            }
+//                        for (int m=0; m<kromosom.getGenWaktu().size(); m++){
+//                            for (int n=0; n<pointer2.getGenWaktu().size(); n++){}
+                        if ((kromosom.getGenRuangan().getIdRuangan().equals(pointer2.getGenRuangan().getIdRuangan())) &&
+                            (kromosom.getGenWaktu().getJam().getIdJam() == pointer2.getGenWaktu().getJam().getIdJam()) &&
+                            (kromosom.getGenDate().compareTo(pointer2.getGenDate())==0) &&
+                            (kromosom.getGenKA().getIdKa() != pointer2.getGenKA().getIdKa())){
+                                pinalty++;
+//                            for (int m=0; m<kromosom.getGenWaktu().size(); m++){
+//                                for (int n=0; n<pointer2.getGenWaktu().size(); n++){
+//                                    if((kromosom.getGenWaktu().get(m).getJam().getIdJam() 
+//                                            == pointer2.getGenWaktu().get(m).getJam().getIdJam())){
+//                                        pinalty++;
+//                                    }
+//                                }
+//                            }
+                                
+                        
                         }
-                    }
+                   }
             }
         return pinalty;
     }
