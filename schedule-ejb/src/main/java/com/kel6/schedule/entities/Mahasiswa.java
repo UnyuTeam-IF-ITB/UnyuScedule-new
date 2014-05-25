@@ -20,6 +20,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -36,6 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Mahasiswa.findByNmMhs", query = "SELECT m FROM Mahasiswa m WHERE m.nmMhs = :nmMhs"),
     @NamedQuery(name = "Mahasiswa.findByAlmtMhs", query = "SELECT m FROM Mahasiswa m WHERE m.almtMhs = :almtMhs"),
     @NamedQuery(name = "Mahasiswa.findByJnsKlmnMhs", query = "SELECT m FROM Mahasiswa m WHERE m.jnsKlmnMhs = :jnsKlmnMhs")})
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Mahasiswa implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

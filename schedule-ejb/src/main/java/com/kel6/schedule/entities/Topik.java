@@ -18,6 +18,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -32,6 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Topik.findAll", query = "SELECT t FROM Topik t"),
     @NamedQuery(name = "Topik.findByIdTopik", query = "SELECT t FROM Topik t WHERE t.idTopik = :idTopik"),
     @NamedQuery(name = "Topik.findByNmTopik", query = "SELECT t FROM Topik t WHERE t.nmTopik = :nmTopik")})
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Topik implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

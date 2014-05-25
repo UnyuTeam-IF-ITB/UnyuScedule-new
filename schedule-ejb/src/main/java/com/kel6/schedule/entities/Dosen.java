@@ -21,6 +21,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -39,6 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Dosen.findByJnsKlmnDsn", query = "SELECT d FROM Dosen d WHERE d.jnsKlmnDsn = :jnsKlmnDsn"),
     @NamedQuery(name = "Dosen.findByUsername", query = "SELECT d FROM Dosen d WHERE d.username = :username"),
     @NamedQuery(name = "Dosen.findByPassword", query = "SELECT d FROM Dosen d WHERE d.password = :password")})
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Dosen implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -32,6 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Ruangan.findAll", query = "SELECT r FROM Ruangan r"),
     @NamedQuery(name = "Ruangan.findByIdRuangan", query = "SELECT r FROM Ruangan r WHERE r.idRuangan = :idRuangan"),
     @NamedQuery(name = "Ruangan.findByNmRuangan", query = "SELECT r FROM Ruangan r WHERE r.nmRuangan = :nmRuangan")})
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Ruangan implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

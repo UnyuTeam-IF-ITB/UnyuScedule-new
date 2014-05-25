@@ -1,0 +1,131 @@
+
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="/template.xhtml"
+    xmlns:jsf="http://xmlns.jcp.org/jsf"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        Get Data From Server...
+    <h:form>
+        <p:commandButton action="#{getDataController.insertDataFromServer()}" value="Add" />
+        <f:view>
+            <h:form>
+                <p:dataTable value="#{getDataController.listDosen}" var="item">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="NIP"/>
+                        </f:facet>
+                        <h:outputText value="#{item.NIP}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="NAMA"/>
+                        </f:facet>
+                        <h:outputText value="#{item.namaDosen}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </f:view>
+        <f:view>
+            <h:form>
+                <p:dataTable value="#{getDataController.listKA}" var="item">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idKarya}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Judul"/>
+                        </f:facet>
+                        <h:outputText value="#{item.judulKarya}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Mahasiswa"/>
+                        </f:facet>
+                        <h:outputText value="#{item.namaMhs}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Pembimbing 1"/>
+                        </f:facet>
+                        <h:outputText value="#{item.pembimbing1}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Penguji 1"/>
+                        </f:facet>
+                        <h:outputText value="#{item.penguji1}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ruangan"/>
+                        </f:facet>
+                        <h:outputText value="#{item.ruangan}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </f:view>
+        <f:view>
+            <h:form>
+                <p:dataTable value="#{getDataController.listMhs}" var="item">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="NIM"/>
+                        </f:facet>
+                        <h:outputText value="#{item.NIM}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="NAMA"/>
+                        </f:facet>
+                        <h:outputText value="#{item.namaMhs}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </f:view>
+        <f:view>
+            <h:form>
+                <p:dataTable value="#{getDataController.listRuangan}" var="item">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idRuangan}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ruangan"/>
+                        </f:facet>
+                        <h:outputText value="#{item.ruangan}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </f:view>
+        <f:view>
+            <h:form>
+                <p:dataTable value="#{getDataController.listTopik}" var="item">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:outputText value="#{item.topik}"/>
+                    </p:column>
+                    
+                </p:dataTable>
+            </h:form>
+        </f:view>
+        <p:commandButton action="#{getDataController.save()}" value="Save" />
+        
+    </h:form>
+        
+    </ui:define>
+</ui:composition>
+
